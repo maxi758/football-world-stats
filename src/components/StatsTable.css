@@ -1,0 +1,263 @@
+.stats-container {
+  animation: fadeIn 0.5s ease;
+  max-width: 860px;  /* Cap the total width */
+}
+
+.stats-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Reduced gap for accordion look */
+}
+
+.stats-card {
+  background-color: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 0;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  transition: all 0.2s ease;
+  max-width: 860px;  /* Match container */
+}
+
+/* Accordion Specifics */
+.accordion-item {
+    border: 1px solid var(--border-color);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: var(--bg-secondary);
+  transition: background-color 0.2s;
+}
+
+/* Make header clickable for leagues */
+.accordion-header {
+    cursor: pointer;
+    user-select: none;
+}
+
+.accordion-header:hover {
+    background-color: var(--bg-tertiary);
+}
+
+.accordion-header.active {
+    background-color: var(--bg-tertiary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-grow: 1;
+}
+
+.accordion-icon {
+    font-size: 1.5rem;
+    color: var(--accent-primary);
+    font-weight: 300;
+    width: 20px;
+    text-align: center;
+    line-height: 1;
+}
+
+.card-header h3 {
+  color: var(--accent-primary);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.stage-badge {
+  background-color: var(--bg-tertiary);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* Content Area */
+.accordion-content {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    background-color: var(--bg-secondary);
+}
+
+.accordion-content.expanded {
+    max-height: 2000px; /* Arbitrary large height for table */
+    opacity: 1;
+    padding-bottom: 1rem;
+}
+
+/* Table Styles - Adjusted for Full Width */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+}
+
+.standings-table {
+  width: 100%;
+  min-width: 520px; /* Prevents columns from collapsing below readable width */
+  border-collapse: collapse;
+}
+
+.standings-table th {
+  text-align: left;
+  color: var(--text-secondary);
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  background-color: var(--bg-secondary);
+  position: sticky;
+  top: 0;
+}
+
+.standings-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--bg-tertiary);
+  font-size: 0.9rem;
+}
+
+.standings-table tr:hover td {
+    background-color: var(--bg-tertiary);
+}
+
+.standings-table tr:last-child td {
+  border-bottom: none;
+}
+
+.rank {
+  color: var(--text-secondary);
+  width: 40px;
+  text-align: center;
+}
+
+.team-cell {
+  font-weight: 600;
+}
+
+.points {
+  font-weight: 700;
+  color: var(--accent-primary);
+}
+
+.form-indicators {
+  display: flex;
+  gap: 4px;
+}
+
+.form-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.form-dot.W { background-color: #22c55e; color: #fff; } /* Win = Green */
+.form-dot.D { background-color: #94a3b8; color: #fff; } /* Draw = Gray */
+.form-dot.L { background-color: #ef4444; color: #fff; } /* Loss = Red */
+.no-form { color: var(--text-muted); font-size: 0.8rem; }
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fa-fade-in {
+    animation: fadeIn 0.3s ease;
+}
+
+/* Cup Styles - Minor Tweaks */
+.cup-content {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+.cup-match-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  align-items: center;
+  border-bottom: 1px solid var(--bg-tertiary);
+}
+
+.cup-match-row:last-child {
+  border-bottom: none;
+}
+
+.cup-match-row .vs {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+.cup-match-row .date {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.cup-match-row .home { text-align: right; font-weight: 600; }
+.cup-match-row .away { text-align: left; font-weight: 600; }
+
+.groups-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.group-box h4 {
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.group-box ul li {
+  padding: 0.5rem;
+  background-color: var(--bg-tertiary);
+  margin-bottom: 0.25rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+/* ── Top Scorers ── */
+.scorers-section {
+  margin-top: 2rem;
+  border-top: 2px solid var(--border-color);
+  padding-top: 0.5rem;
+}
+
+.scorers-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  padding: 1.25rem 1rem 0.5rem 1rem;
+  letter-spacing: -0.3px;
+}
+
+.scorers-loading {
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+.scorers-table th,
+.scorers-table td {
+  text-align: center;
+}
+
+.scorers-table th:nth-child(2),
+.scorers-table td:nth-child(2),
+.scorers-table th:nth-child(3),
+.scorers-table td:nth-child(3) {
+  text-align: left;
+}
+
