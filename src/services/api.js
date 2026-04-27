@@ -1,7 +1,11 @@
 import { LIVE_MATCHES, LEAGUES, CUPS } from '../data/mockData';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
-const BASE_URL = '/api';
+
+// In dev, use the Vite proxy to avoid CORS. In production, call the API directly.
+const BASE_URL = import.meta.env.DEV
+  ? '/api'
+  : 'https://api.football-data.org/v4';
 
 const headers = {
   'X-Auth-Token': API_KEY

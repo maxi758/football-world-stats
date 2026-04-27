@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { fetchLeagues, fetchCups, fetchTopScorers } from '../services/api';
 import './StatsTable.css';
 
@@ -181,7 +182,8 @@ const StatsTable = ({ type, data: propData }) => {
 
       <div className="stats-grid">
         {data.map((item) => (
-          <div key={item.id} className={`stats-card ${type === 'leagues' ? 'accordion-item' : ''}`}>
+          <React.Fragment key={item.id}>
+          <div className={`stats-card ${type === 'leagues' ? 'accordion-item' : ''}`}>
 
             {/* Header / Click Trigger - Only show if NOT single-league mode */}
             {type !== 'single-league' && (
@@ -220,16 +222,28 @@ const StatsTable = ({ type, data: propData }) => {
             ) : type === 'single-league' ? (
                 <div style={{padding:'0'}}>
                     {renderLeagueContent(item)}
-                    {renderTopScorers()}
                 </div>
             ) : (
                 renderCupContent(item)
             )}
           </div>
+
+          {/* Scorers rendered as a SEPARATE card below standings */}
+          {type === 'single-league' && (
+            <div className="stats-card scorers-card">
+              {renderTopScorers()}
+            </div>
+          )}
+          </React.Fragment>
         ))}
       </div>
     </div>
   );
+};
+
+StatsTable.propTypes = {
+  type: PropTypes.string.isRequired,
+  data: PropTypes.object,
 };
 
 export default StatsTable;

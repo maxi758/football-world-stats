@@ -230,10 +230,14 @@
 }
 
 /* ── Top Scorers ── */
+.scorers-card {
+  overflow: visible !important; /* Override stats-card overflow:hidden */
+}
+
 .scorers-section {
-  margin-top: 2rem;
-  border-top: 2px solid var(--border-color);
-  padding-top: 0.5rem;
+  margin-top: 0;
+  padding: 0.5rem 0;
+  border-top: none;
 }
 
 .scorers-title {
