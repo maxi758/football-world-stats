@@ -8,11 +8,14 @@ function App() {
   const [activeTab, setActiveTab] = useState('live');
   const [leagues, setLeagues] = useState([]);
   const [selectedLeague, setSelectedLeague] = useState(null);
+  const [leaguesLoading, setLeaguesLoading] = useState(true);
 
   useEffect(() => {
     const loadLeagues = async () => {
+      setLeaguesLoading(true);
       const data = await fetchLeagues();
       setLeagues(data);
+      setLeaguesLoading(false);
     };
     loadLeagues();
   }, []);
@@ -44,7 +47,8 @@ function App() {
     <Layout 
         activeTab={activeTab} 
         onTabChange={handleTabChange} 
-        leagues={leagues} // Pass leagues to Layout -> Sidebar
+        leagues={leagues}
+        leaguesLoading={leaguesLoading}
     >
       {renderContent()}
     </Layout>

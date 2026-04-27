@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Sidebar.css';
 
-const Sidebar = ({ activeTab, onTabChange, leagues = [] }) => {
+const Sidebar = ({ activeTab, onTabChange, leagues = [], leaguesLoading = false }) => {
   const [leaguesOpen, setLeaguesOpen] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
 
